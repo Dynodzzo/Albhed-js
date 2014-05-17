@@ -15,17 +15,26 @@
 	</header>
 	<section class="container">
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, officiis, aut, obcaecati distinctio architecto dolorem deserunt voluptates voluptas repellat impedit fuga illum exercitationem rerum odio quae illo ipsam quasi quas.</p>
-		<div class="row">
-			<div class="column half">
-				<form action="#">
+		<form action="#">
+			<div class="row">
+				<div class="column half">
 					<label for="tbxInputText">Input text</label>
 					<input type="text" id="tbxInputText" name="tbxAlbhed">
-				</form>
+				</div>
 			</div>
-			<div class="column half">
-				
+			<div class="row">
+				<div class="column half">
+				<label for="tbxOutputText">Output text</label>
+					<input type="text" id="tbxOutputText" name="tbxOutputText" disabled>
+				</div>
 			</div>
-		</div>
+			<div class="row">
+				<div class="column half">
+				<label for="tbxPhoneticText">Phonetic text</label>
+					<input type="text" id="tbxPhoneticText" name="tbxPhoneticText" disabled>
+				</div>
+			</div>
+		</form>
 	</section>
 	<script type="text/javascript" src="app/js/vendor/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="app/js/app.js"></script>
