@@ -227,7 +227,7 @@ app.btnAudio = (function() {
 	};
 	
 	var setGoogleTTSUrl = function(language) {
-		GoogleTTSBaseUrl = 'http://translate.google.com/translate_tts?ie=utf-8&tl=' + language + '&q=';
+		GoogleTTSBaseUrl = 'http://nicolascarreras.me/gateway.php?ie=utf-8&tl=' + language + '&q=';
 	};
 	
 	return {
