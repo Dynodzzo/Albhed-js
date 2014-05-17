@@ -194,8 +194,122 @@ app.tbxPhoneticText = (function() {
 	};
 })();
 
+app.btnAudio = (function() {
+	var $this = $('input#btnAudio');
+	var GoogleTTSLanguage = 'en';
+	var GoogleTTSBaseUrl = 'http://translate.google.com/translate_tts?ie=utf-8&tl=' + GoogleTTSLanguage + '&q=';
+	
+	var init = function() {
+		$(document).bind('tbxAlbhedTextChange', onChange);
+		$(document).bind('lstLanguagesChange', onLanguageChange);
+		$this.bind('click', onClick);
+	};
+	
+	var onChange= function(event) {
+		$this.attr('data-text', event.text);
+	};
+	
+	var onLanguageChange = function(event) {
+		setGoogleTTSLanguage(event.language);
+	};
+	
+	var onClick = function(event) {
+		var clearText = $this.attr('data-text').replace(' ', '%20');
+		var audioUrl = GoogleTTSBaseUrl + clearText;
+		var audio = new Audio();
+		audio.src = audioUrl;
+		audio.play();
+	};
+	
+	var getText = function() {
+		return $this.val();
+	};
+	
+	var setGoogleTTSLanguage = function(language) {
+		GoogleTTSBaseUrl = 'http://translate.google.com/translate_tts?ie=utf-8&tl=' + language + '&q=';
+	};
+	
+	return {
+		'init': init,
+		'getText': getText,
+	};
+})();
+
+app.lstLanguages = (function() {
+	var $this = $('select#lstLanguages');
+	var languages = {
+      'af' : 'Afrikaans',
+      'sq' : 'Albanian',
+      'ar' : 'Arabic',
+      'hy' : 'Armenian',
+      'ca' : 'Catalan',
+      'zh-CN' : 'Mandarin (simplified)',
+      'zh-TW' : 'Mandarin (traditional)',
+      'hr' : 'Croatian',
+      'cs' : 'Czech',
+      'da' : 'Danish',
+      'nl' : 'Dutch',
+      'en' : 'English',
+      'eo' : 'Esperanto',
+      'fi' : 'Finnish',
+      'fr' : 'French',
+      'de' : 'German',
+      'el' : 'Greek',
+      'ht' : 'Haitian Creole',
+      'hi' : 'Hindi',
+      'hu' : 'Hungarian',
+      'is' : 'Icelandic',
+      'id' : 'Indonesian',
+      'it' : 'Italian',
+      'ja' : 'Japanese',
+      'ko' : 'Korean',
+      'la' : 'Latin',
+      'lv' : 'Latvian',
+      'mk' : 'Macedonian',
+      'no' : 'Norwegian',
+      'pl' : 'Polish',
+      'pt' : 'Portuguese',
+      'ro' : 'Romanian',
+      'ru' : 'Russian',
+      'sr' : 'Serbian',
+      'sk' : 'Slovak',
+      'es' : 'Spanish',
+      'sw' : 'Swahili',
+      'sv' : 'Swedish',
+      'ta' : 'Tamil',
+      'th' : 'Thai',
+      'tr' : 'Turkish',
+      'vi' : 'Vietnamese',
+      'cy' : 'Welsh'
+	}
+	
+	var init = function() {
+		for (var key in languages) {
+			var $languageOption = $('<option>', {'class': 'optLanguage'});
+			$languageOption.val(key);
+			$languageOption.html(languages[key]);
+			$this.append($languageOption);
+		}
+		
+		$this.bind('change', onChange);
+	};
+	
+	var onChange = function() {
+		$(document).trigger({
+			'type': 'lstLanguagesChange',
+			'language': $this.val(),
+		});
+	};
+	
+	return {
+		'init': init,
+	};
+})();
+
 $(document).bind('ready', function() {
+	app.lstLanguages.init();
 	app.tbxInputText.init();
 	app.tbxOutputText.init();
 	app.tbxPhoneticText.init();
+	app.btnAudio.init();
 });
