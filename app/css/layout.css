@@ -1,3 +1,23 @@
+form div.row {
+	margin-bottom: 15px;
+}
+
 form label {
 	cursor: pointer;
+}
+
+form textarea {
+	min-height: 75px;
+	max-height: 200px;
+	min-width: 100%;
+	max-width: 100%;
+	width: 100%;
+}
+
+form input#btnAudio {
+	width: 80px;
+	height: 80px;
+	border-radius: 100%;
+	display: block;
+	margin: 10px auto;
 }

@@ -29,6 +29,11 @@ html {
 	.column.third { width: 33.3%; }
 	.column.fourth { width: 24.95%; }
 	.column.flow-opposite { float: right; }
+	
+	.column.centered {
+		margin: 0 auto;
+		float: none;
+	}
 }
 
 /* Large screens (1024px) */

@@ -103,7 +103,7 @@ app.translator = (function() {
 						newChar = newChar.toUpperCase();
 					}
 					
-					if (newAlphabet == 'albhedPhonetics' && separateWord) {
+					if (newAlphabet === 'albhedPhonetics' && separateWord) {
 						if (!isCharacterVowel(oldChar) && newChar.length > 1) {
 							newChar = '-' + newChar;
 						}
@@ -125,7 +125,7 @@ app.translator = (function() {
 })();
 
 app.tbxInputText = (function() {
-	var $this = $('input#tbxInputText');
+	var $this = $('textarea#tbxInputText');
 	
 	var init = function() {
 		$this.bind('input', onChange);
@@ -149,7 +149,7 @@ app.tbxInputText = (function() {
 })();
 
 app.tbxOutputText = (function() {
-	var $this = $('input#tbxOutputText');
+	var $this = $('textarea#tbxOutputText');
 	
 	var init = function() {
 		$(document).bind('tbxInputTextChange', onReceive);
@@ -174,7 +174,7 @@ app.tbxOutputText = (function() {
 })();
 
 app.tbxPhoneticText = (function() {
-	var $this = $('input#tbxPhoneticText');
+	var $this = $('textarea#tbxPhoneticText');
 	
 	var init = function() {
 		$(document).bind('tbxAlbhedTextChange', onReceive);
@@ -196,8 +196,8 @@ app.tbxPhoneticText = (function() {
 
 app.btnAudio = (function() {
 	var $this = $('input#btnAudio');
-	var GoogleTTSLanguage = 'en';
-	var GoogleTTSBaseUrl = 'http://translate.google.com/translate_tts?ie=utf-8&tl=' + GoogleTTSLanguage + '&q=';
+	var GoogleTTSLanguage;
+	var GoogleTTSBaseUrl;
 	
 	var init = function() {
 		$(document).bind('tbxAlbhedTextChange', onChange);
@@ -210,7 +210,7 @@ app.btnAudio = (function() {
 	};
 	
 	var onLanguageChange = function(event) {
-		setGoogleTTSLanguage(event.language);
+		setGoogleTTSUrl(event.language);
 	};
 	
 	var onClick = function(event) {
@@ -225,7 +225,7 @@ app.btnAudio = (function() {
 		return $this.val();
 	};
 	
-	var setGoogleTTSLanguage = function(language) {
+	var setGoogleTTSUrl = function(language) {
 		GoogleTTSBaseUrl = 'http://translate.google.com/translate_tts?ie=utf-8&tl=' + language + '&q=';
 	};
 	
@@ -237,6 +237,7 @@ app.btnAudio = (function() {
 
 app.lstLanguages = (function() {
 	var $this = $('select#lstLanguages');
+	var defaultLanguage = 'en';
 	var languages = {
       'af' : 'Afrikaans',
       'sq' : 'Albanian',
@@ -288,10 +289,14 @@ app.lstLanguages = (function() {
 			var $languageOption = $('<option>', {'class': 'optLanguage'});
 			$languageOption.val(key);
 			$languageOption.html(languages[key]);
+			if (key === defaultLanguage) {
+				$languageOption.attr('selected', 'selected');
+			}
 			$this.append($languageOption);
 		}
 		
 		$this.bind('change', onChange);
+		onChange();
 	};
 	
 	var onChange = function() {
@@ -307,9 +312,9 @@ app.lstLanguages = (function() {
 })();
 
 $(document).bind('ready', function() {
-	app.lstLanguages.init();
 	app.tbxInputText.init();
 	app.tbxOutputText.init();
 	app.tbxPhoneticText.init();
 	app.btnAudio.init();
+	app.lstLanguages.init();
 });
