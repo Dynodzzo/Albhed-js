@@ -10,41 +10,62 @@
 	<title>Albhed Translator</title>
 </head>
 <body>
-	<header class="container">
-		<h1>Al-Bhed Translator</h1>
+	<header>
+		<div class="container">
+			<div class="row">
+				<div class="column full">
+					<h1>Al-Bhed Translator</h1>
+				</div>
+			</div>
+		</div>
 	</header>
-	<section class="container">
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, officiis, aut, obcaecati distinctio architecto dolorem deserunt voluptates voluptas repellat impedit fuga illum exercitationem rerum odio quae illo ipsam quasi quas.</p>
-		<form action="#">
+	<section>
+		<div class="container">
 			<div class="row">
-				<div class="column half">
-					<label for="tbxInputText">Input text</label>
-					<input type="text" id="tbxInputText" name="tbxAlbhed">
+				<div class="column full">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, officiis, aut, obcaecati distinctio architecto dolorem deserunt voluptates voluptas repellat impedit fuga illum exercitationem rerum odio quae illo ipsam quasi quas.</p>
 				</div>
 			</div>
-			<div class="row">
-				<div class="column half">
-					<label for="tbxOutputText">Output text</label>
-					<input type="text" id="tbxOutputText" name="tbxOutputText" disabled>
+			<form action="#">
+				<div class="row">
+					<div class="column two-thirds centered">
+						<label for="tbxInputText">Input text</label>
+					</div>
+					<div class="column two-thirds centered">
+						<textarea id="tbxInputText" name="tbxAlbhed"></textarea>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="column half">
-					<label for="tbxPhoneticText">Phonetic text</label>
-					<input type="text" id="tbxPhoneticText" name="tbxPhoneticText" disabled>
+				<div class="row">
+					<div class="column two-thirds centered">
+						<label for="tbxOutputText">Output text</label>
+					</div>
+					<div class="column two-thirds centered">
+						<textarea id="tbxOutputText" name="tbxOutputText" disabled></textarea>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="column half">
-					<label for="btnAudio">Audio</label>
-					<input type="button" id="btnAudio" name="btnAudio" value="\o/" data-text="">
+				<div class="row">
+					<div class="column two-thirds centered">
+						<label for="tbxPhoneticText">Phonetic text</label>
+					</div>
+					<div class="column two-thirds centered">
+						<textarea id="tbxPhoneticText" name="tbxPhoneticText" disabled></textarea>
+					</div>
 				</div>
-				<div class="column half">
-					<label for="lstLanguages">Languages</label>
-					<select name="lstLanguages" id="lstLanguages"></select>
+				<div class="row">
+					<div class="column two-thirds centered">
+						<label for="lstLanguages">Language</label>
+					</div>
+					<div class="column two-thirds centered">
+						<select name="lstLanguages" id="lstLanguages"></select>
+					</div>
 				</div>
-			</div>
-		</form>
+				<div class="row">
+					<div class="column third centered">
+						<input type="button" id="btnAudio" name="btnAudio" value="Listen" data-text="">
+					</div>
+				</div>
+			</form>
+		</div>
 	</section>
 	<script type="text/javascript" src="app/js/vendor/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="app/js/app.js"></script>

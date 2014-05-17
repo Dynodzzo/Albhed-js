@@ -1,0 +1,16 @@
+header {
+	background-color: #CFDAEC;
+}
+
+header h1 {
+	color: #505050;
+}
+
+form label {
+	font-size: 16px;
+}
+
+form input#btnAudio {
+	background-color: #CFDAEC;
+	border: 1px solid #909090;
+}
