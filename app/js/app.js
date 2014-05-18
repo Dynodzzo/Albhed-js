@@ -214,7 +214,7 @@ app.btnAudio = (function() {
 	};
 	
 	var onClick = function(event) {
-		var clearText = $this.attr('data-text').replace(' ', '%20');
+		var clearText = encodeURIComponent($this.attr('data-text'));
 		var audioUrl = GoogleTTSBaseUrl + clearText;
 		var audio = document.createElement('audio');
 		audio.src = audioUrl;
